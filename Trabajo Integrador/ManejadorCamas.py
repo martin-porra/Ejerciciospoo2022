@@ -32,9 +32,11 @@ class ManejadorCamas:
               self.agregarCama(cama)
 
     def DarAlta(self,Nombre,Medicamentos):
-        band = True
         print('-------------------------------------------------------------------------------------------------------------')
-        for i in range(int(self.__cantidad)):
+        i = 0
+        bandera = False
+        band = False
+        while i < (int(self.__cantidad)) and bandera == False:
          if self.__camas[i].getNombre().lower() == Nombre.lower():
             fecha = datetime.today().strftime('%d/%m/%Y')
             self.__camas[i].ingresarFechaalta(fecha)
@@ -45,9 +47,10 @@ class ManejadorCamas:
             band = True
             self.__camas[i].ingresarEstado(False)
             self.__camas[i].ingresarnombre(None)
-
-            break
+            bandera= True
+            i= i +1
          else:
+            i = i + 1
             band = False
         if band == False:
          print('Paciente no encontrado')
